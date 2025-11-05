@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grow Your Business With Us | Cart2Doors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #7c3aed;
+      --accent: #06b6d4;
+      --dark: #0f172a;
+      --darker: #020617;
+      --light: #f8fafc;
+      --lighter: #ffffff;
+      --text: #334155;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Inter', sans-serif; 
+    }
+    
+    body { 
+      background: var(--light); 
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    
+    /* Loading Animation */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--lighter);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--border);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Header Styles */
+    header {
+      background: var(--lighter);
+      color: var(--dark);
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 1px 3px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    
+    header.scrolled {
+      padding: 0.8rem 2rem;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+    
+    header h1 { 
+      font-size: 1.6rem; 
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover { 
+      color: var(--primary);
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(124, 58, 237, 0.9)), 
+                  url('https://images.unsplash.com/photo-1531497865144-0464ef8fb9a8?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 7rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
+    }
+    
+    .hero h2 {
+      font-size: 3rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -1px;
+      animation: fadeInUp 0.8s ease;
+    }
+    
+    .hero p { 
+      font-size: 1.2rem; 
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .btn {
+      background: var(--lighter);
+      color: var(--primary);
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      animation: fadeInUp 0.8s ease 0.4s both;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+    
+    .btn:hover { 
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    
+    .btn:hover::before {
+      opacity: 1;
+    }
+    
+    /* Section Styles */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--dark);
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+    
+    /* Grid and Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .card {
+      background: var(--lighter);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--gradient);
+    }
+    
+    .card:hover { 
+      transform: translateY(-10px); 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .card h3 { 
+      margin: 1rem 0 1rem; 
+      color: var(--dark);
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    
+    .card p { 
+      font-size: 1rem; 
+      line-height: 1.6; 
+      color: var(--text-light);
+    }
+    
+    /* Contact Section */
+    .contact {
+      background: var(--gradient);
+      color: white;
+      text-align: center;
+      border-radius: 20px;
+      padding: 4rem 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 4s infinite alternate;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      100% { transform: scale(1.2); opacity: 0.8; }
+    }
+    
+    .contact > * {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .contact h3 { 
+      font-size: 2rem; 
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .contact p { 
+      font-size: 1.1rem; 
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .contact p i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .contact a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    
+    .contact a:hover {
+      border-bottom-color: white;
+    }
+    
+    .contact .btn {
+      background: white;
+      color: var(--primary);
+      margin-top: 1.5rem;
+    }
+    
+    .contact .btn:hover {
+      background: var(--dark);
+      color: white;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--darker);
+      color: #94a3b8;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.95rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      color: #94a3b8;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--gradient);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding: 1rem;
+      }
+      
+      nav { 
+        margin-top: 0.5rem; 
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      nav a {
+        margin: 0;
+      }
+      
+      .hero h2 { 
+        font-size: 2.2rem; 
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .contact {
+        padding: 3rem 1.5rem;
+      }
+      
+      .contact h3 {
+        font-size: 1.6rem;
+      }
+      
+      .contact p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Animation -->
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <header id="header">
+    <h1>Cart2Doors</h1>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Grow Your Business With Us</h2>
+    <p>Professional SEO, App Development, Website Design & Advertising Solutions to take your brand to the next level.</p>
+    <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
+  </section>
+
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3566/3566403.png" alt="SEO">
+        <h3>SEO Optimization</h3>
+        <p>Boost your visibility on search engines with result-driven SEO strategies tailored for your business.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4727/4727496.png" alt="App Development">
+        <h3>App Development</h3>
+        <p>We design and build user-friendly mobile apps to connect you directly with your audience.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" alt="Web Design">
+        <h3>Website Design</h3>
+        <p>Create a stunning online presence with fast, responsive, and modern websites that convert visitors into clients.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135681.png" alt="Advertising">
+        <h3>Advertising</h3>
+        <p>Targeted online marketing campaigns that help your business reach the right customers at the right time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <h3>Let’s Work Together</h3>
+      <p><i class="fas fa-phone"></i> <strong>+91 87594 57585</strong></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:cart2doors@gmail.com">cart2doors@gmail.com</a></p>
+      <p>Ready to grow your business? Let's discuss how we can help you succeed!</p>
+      <button class="btn" onclick="window.location.href='mailto:cart2doors@gmail.com'">Send Email</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>© <span id="year"></span> Cart2Doors — Grow Your Business With Us.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Hide loader when page is fully loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('hidden');
+      }, 500);
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
