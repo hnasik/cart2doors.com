@@ -1,179 +1,209 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grow Your Business With Us | Cart2Doors</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Cart2Doors | Digital Growth Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-dark: #1e40af;
-      --secondary: #7c3aed;
-      --accent: #06b6d4;
-      --dark: #0f172a;
-      --darker: #020617;
-      --light: #f8fafc;
-      --lighter: #ffffff;
-      --text: #334155;
-      --text-light: #64748b;
-      --border: #e2e8f0;
-      --shadow: rgba(0, 0, 0, 0.1);
-      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      --primary: #00d4ff;
+      --secondary: #ff00ff;
+      --accent: #00ff88;
+      --dark: #0a0a0a;
+      --darker: #050505;
+      --light: #ffffff;
+      --text: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
     }
     
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      font-family: 'Inter', sans-serif; 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
-    body { 
-      background: var(--light); 
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
       color: var(--text);
       overflow-x: hidden;
+      position: relative;
     }
     
-    /* Loading Animation */
-    .loader {
+    /* Background Animation */
+    .bg-animation {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: linear-gradient(45deg, #0a0a0a, #1a0033, #000428, #0a0a0a);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .particles {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--lighter);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      overflow: hidden;
+      z-index: -1;
     }
     
-    .loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-    
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid var(--border);
-      border-top: 4px solid var(--primary);
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--primary);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      opacity: 0.5;
+      animation: float 20s infinite linear;
     }
     
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    @keyframes float {
+      from {
+        transform: translateY(100vh) translateX(0);
+      }
+      to {
+        transform: translateY(-100px) translateX(100px);
+      }
     }
     
-    /* Header Styles */
-    header {
-      background: var(--lighter);
-      color: var(--dark);
-      padding: 1.2rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      box-shadow: 0 1px 3px var(--shadow);
-      position: sticky;
+    /* Navigation */
+    nav {
+      position: fixed;
       top: 0;
-      z-index: 100;
+      width: 100%;
+      padding: 1.5rem 3rem;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--glass-border);
       transition: all 0.3s ease;
     }
     
-    header.scrolled {
-      padding: 0.8rem 2rem;
-      box-shadow: 0 4px 12px var(--shadow);
+    nav.scrolled {
+      padding: 1rem 3rem;
+      background: rgba(10, 10, 10, 0.9);
     }
     
-    header h1 { 
-      font-size: 1.6rem; 
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
       font-weight: 700;
-      background: var(--gradient);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      letter-spacing: -0.5px;
+      letter-spacing: -1px;
     }
     
-    nav a {
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
       color: var(--text);
       text-decoration: none;
-      margin: 0 1rem;
       font-weight: 500;
       position: relative;
       transition: color 0.3s ease;
+      padding: 0.5rem 0;
     }
     
-    nav a::after {
+    .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: 0;
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--gradient);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       transition: width 0.3s ease;
     }
     
-    nav a:hover { 
+    .nav-links a:hover {
       color: var(--primary);
     }
     
-    nav a:hover::after {
+    .nav-links a:hover::after {
       width: 100%;
     }
     
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(124, 58, 237, 0.9)), 
-                  url('https://images.unsplash.com/photo-1531497865144-0464ef8fb9a8?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 7rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 3rem 3rem;
       position: relative;
-      overflow: hidden;
     }
     
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 200%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      animation: shine 3s infinite;
+    .hero-content {
+      max-width: 1200px;
+      text-align: center;
+      z-index: 2;
     }
     
-    @keyframes shine {
-      0% { left: -100%; }
-      20% { left: 100%; }
-      100% { left: 100%; }
-    }
-    
-    .hero h2 {
-      font-size: 3rem;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      line-height: 1.2;
-      font-weight: 700;
-      letter-spacing: -1px;
-      animation: fadeInUp 0.8s ease;
-    }
-    
-    .hero p { 
-      font-size: 1.2rem; 
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
       margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      opacity: 0.9;
+      font-size: 0.9rem;
+      color: var(--primary);
+      backdrop-filter: blur(10px);
+      animation: fadeInDown 0.8s ease;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--light) 0%, var(--primary) 50%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       animation: fadeInUp 0.8s ease 0.2s both;
     }
     
@@ -188,383 +218,464 @@
       }
     }
     
+    .hero-description {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+    
     .btn {
-      background: var(--lighter);
-      color: var(--primary);
-      padding: 0.9rem 2rem;
-      border-radius: 50px;
-      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
       font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-size: 1rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      animation: fadeInUp 0.8s ease 0.4s both;
+      text-decoration: none;
+      display: inline-block;
       position: relative;
       overflow: hidden;
     }
     
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: -1;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--light);
+      border: none;
     }
     
-    .btn:hover { 
-      color: white;
+    .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
     }
     
-    .btn:hover::before {
-      opacity: 1;
+    .btn-secondary {
+      background: transparent;
+      color: var(--light);
+      border: 2px solid var(--glass-border);
+      backdrop-filter: blur(10px);
     }
     
-    /* Section Styles */
-    section {
-      padding: 5rem 2rem;
+    .btn-secondary:hover {
+      background: var(--glass);
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    /* Services Section */
+    .services {
+      padding: 6rem 3rem;
+      position: relative;
+    }
+    
+    .container {
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    
+    .section-label {
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
     }
     
     .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: var(--dark);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 700;
-      position: relative;
-      display: inline-block;
-      width: 100%;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--light), var(--text-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 4px;
-      background: var(--gradient);
-      border-radius: 2px;
+    .section-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
     
-    /* Grid and Cards */
-    .grid {
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
     }
     
-    .card {
-      background: var(--lighter);
+    .service-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
       border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      padding: 2.5rem 2rem;
-      text-align: center;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
     
-    .card::before {
+    .service-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--gradient);
-    }
-    
-    .card:hover { 
-      transform: translateY(-10px); 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-    
-    .card img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      margin-bottom: 1.5rem;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
       transition: transform 0.3s ease;
     }
     
-    .card:hover img {
-      transform: scale(1.1);
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
     }
     
-    .card h3 { 
-      margin: 1rem 0 1rem; 
-      color: var(--dark);
-      font-size: 1.3rem;
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: var(--light);
+    }
+    
+    .service-title {
+      font-size: 1.5rem;
       font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--light);
     }
     
-    .card p { 
-      font-size: 1rem; 
-      line-height: 1.6; 
-      color: var(--text-light);
+    .service-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
     }
     
     /* Contact Section */
     .contact {
-      background: var(--gradient);
-      color: white;
+      padding: 6rem 3rem;
+      position: relative;
+    }
+    
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 4rem;
+      backdrop-filter: blur(20px);
       text-align: center;
-      border-radius: 20px;
-      padding: 4rem 2rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      position: relative;
-      overflow: hidden;
     }
     
-    .contact::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: pulse 4s infinite alternate;
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(0.8); opacity: 0.5; }
-      100% { transform: scale(1.2); opacity: 0.8; }
-    }
-    
-    .contact > * {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .contact h3 { 
-      font-size: 2rem; 
-      margin-bottom: 1.5rem;
+    .contact-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
       font-weight: 700;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     
-    .contact p { 
-      font-size: 1.1rem; 
-      margin: 0.8rem 0;
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    .contact-item {
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 1rem;
+      color: var(--text);
+      font-size: 1.1rem;
     }
     
-    .contact p i {
-      margin-right: 10px;
-      font-size: 1.2rem;
-    }
-    
-    .contact a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      border-bottom: 1px solid transparent;
-    }
-    
-    .contact a:hover {
-      border-bottom-color: white;
-    }
-    
-    .contact .btn {
-      background: white;
+    .contact-item i {
       color: var(--primary);
-      margin-top: 1.5rem;
+      font-size: 1.3rem;
     }
     
-    .contact .btn:hover {
-      background: var(--dark);
-      color: white;
+    .contact-item a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-item a:hover {
+      color: var(--secondary);
     }
     
     /* Footer */
     footer {
-      background: var(--darker);
-      color: #94a3b8;
+      padding: 3rem;
       text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.95rem;
-      margin-top: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid var(--glass-border);
+      background: var(--darker);
     }
     
     .footer-content {
       max-width: 1200px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
     
     .social-links {
-      margin-top: 1rem;
       display: flex;
-      gap: 1rem;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
     
     .social-links a {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255,255,255,0.05);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
       border-radius: 50%;
-      color: #94a3b8;
+      color: var(--text);
+      font-size: 1.2rem;
       transition: all 0.3s ease;
     }
     
     .social-links a:hover {
-      background: var(--gradient);
-      color: white;
-      transform: translateY(-3px);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--light);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
     }
     
-    /* Responsive Design */
+    .footer-text {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    /* Mobile Responsive */
     @media (max-width: 768px) {
-      header { 
-        flex-direction: column; 
-        align-items: flex-start; 
-        padding: 1rem;
+      nav {
+        padding: 1rem 1.5rem;
       }
       
-      nav { 
-        margin-top: 0.5rem; 
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
+      .nav-links {
+        gap: 1rem;
       }
       
-      nav a {
-        margin: 0;
+      .hero {
+        padding: 5rem 1.5rem 3rem;
       }
       
-      .hero h2 { 
-        font-size: 2.2rem; 
+      .hero h1 {
+        font-size: 3rem;
       }
       
-      .hero p {
+      .hero-description {
         font-size: 1.1rem;
       }
       
-      .section-title {
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .services, .contact {
+        padding: 4rem 1.5rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-container {
+        padding: 2.5rem 1.5rem;
+      }
+      
+      .contact-title {
         font-size: 2rem;
-      }
-      
-      .contact {
-        padding: 3rem 1.5rem;
-      }
-      
-      .contact h3 {
-        font-size: 1.6rem;
-      }
-      
-      .contact p {
-        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- Loading Animation -->
-  <div class="loader" id="loader">
-    <div class="spinner"></div>
-  </div>
-
-  <header id="header">
-    <h1>Cart2Doors</h1>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
+  <div class="bg-animation"></div>
+  <div class="particles" id="particles"></div>
+  
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">Cart2Doors</div>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  
   <section class="hero">
-    <h2>Grow Your Business With Us</h2>
-    <p>Professional SEO, App Development, Website Design & Advertising Solutions to take your brand to the next level.</p>
-    <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
-  </section>
-
-  <section id="services">
-    <h2 class="section-title">Our Services</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/3566/3566403.png" alt="SEO">
-        <h3>SEO Optimization</h3>
-        <p>Boost your visibility on search engines with result-driven SEO strategies tailored for your business.</p>
-      </div>
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/4727/4727496.png" alt="App Development">
-        <h3>App Development</h3>
-        <p>We design and build user-friendly mobile apps to connect you directly with your audience.</p>
-      </div>
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" alt="Web Design">
-        <h3>Website Design</h3>
-        <p>Create a stunning online presence with fast, responsive, and modern websites that convert visitors into clients.</p>
-      </div>
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135681.png" alt="Advertising">
-        <h3>Advertising</h3>
-        <p>Targeted online marketing campaigns that help your business reach the right customers at the right time.</p>
+    <div class="hero-content">
+      <div class="hero-badge">ðŸš€ Digital Growth Experts</div>
+      <h1>Grow Your Business With Us</h1>
+      <p class="hero-description">
+        Transform your digital presence with cutting-edge SEO, app development, web design, and advertising solutions that drive real results.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          Start Your Journey
+        </button>
+        <button class="btn btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+          Explore Services
+        </button>
       </div>
     </div>
   </section>
-
-  <section id="contact">
-    <div class="contact">
-      <h3>Let’s Work Together</h3>
-      <p><i class="fas fa-phone"></i> <strong>+91 87594 57585</strong></p>
-      <p><i class="fas fa-envelope"></i> <a href="mailto:cart2doors@gmail.com">cart2doors@gmail.com</a></p>
-      <p>Ready to grow your business? Let's discuss how we can help you succeed!</p>
-      <button class="btn" onclick="window.location.href='mailto:cart2doors@gmail.com'">Send Email</button>
+  
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">What We Offer</div>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-description">
+          Comprehensive digital solutions designed to elevate your brand and accelerate growth
+        </p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3 class="service-title">SEO Optimization</h3>
+          <p class="service-description">
+            Dominate search rankings with our advanced SEO strategies. We boost your visibility and drive organic traffic that converts.
+          </p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="service-title">App Development</h3>
+          <p class="service-description">
+            Create powerful mobile experiences that engage users and drive business growth with our custom app development solutions.
+          </p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3 class="service-title">Website Design</h3>
+          <p class="service-description">
+            Build stunning, high-performance websites that captivate visitors and turn them into loyal customers.
+          </p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+          <h3 class="service-title">Advertising</h3>
+          <p class="service-description">
+            Reach your ideal audience with precision-targeted campaigns that maximize ROI and accelerate business growth.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
-
+  
+  <section class="contact" id="contact">
+    <div class="contact-container">
+      <h2 class="contact-title">Let's Build Something Amazing</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+91 87594 57585</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:cart2doors@gmail.com">cart2doors@gmail.com</a>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="window.location.href='mailto:cart2doors@gmail.com'">
+        Send Message
+      </button>
+    </div>
+  </section>
+  
   <footer>
     <div class="footer-content">
-      <p>© <span id="year"></span> Cart2Doors — Grow Your Business With Us.</p>
       <div class="social-links">
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       </div>
+      <p class="footer-text">
+        Â© <span id="year"></span> Cart2Doors â€” Digital Growth Partners
+      </p>
     </div>
   </footer>
-
+  
   <script>
+    // Generate particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 20 + 's';
+      particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+    
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    // Hide loader when page is fully loaded
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('loader').classList.add('hidden');
-      }, 500);
-    });
-    
-    // Header scroll effect
+    // Navbar scroll effect
     window.addEventListener('scroll', function() {
-      const header = document.getElementById('header');
+      const navbar = document.getElementById('navbar');
       if (window.scrollY > 50) {
-        header.classList.add('scrolled');
+        navbar.classList.add('scrolled');
       } else {
-        header.classList.remove('scrolled');
+        navbar.classList.remove('scrolled');
       }
     });
     
@@ -581,7 +692,29 @@
         }
       });
     });
+    
+    // Add intersection observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
   </script>
-
 </body>
 </html>
