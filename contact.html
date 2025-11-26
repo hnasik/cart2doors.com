@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us | My Modern Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+   /* Your existing CSS stays same (not repeating here to keep clean) */
+   /* Keep your previous modern styling, colors, layout, etc. */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-row">
+      <h1 class="title">Contact Us</h1>
+      <div class="back-link">
+        <a href="index.html">? Back to Home</a>
+      </div>
+    </div>
+
+    <p class="subtitle">
+      Have a question or want to work together? Fill in the form below and we’ll get back to you.
+    </p>
+
+    <!-- ?? UPDATED FORM STARTS HERE -->
+    <form action="https://formsubmit.co/cart2doors@gmail.com" method="POST">
+
+      <!-- Disable CAPTCHA -->
+      <input type="hidden" name="_captcha" value="false">
+
+      <!-- Redirect to thank-you page after sent -->
+      <input type="hidden" name="_next" value="https://yourusername.github.io/thankyou.html">
+
+      <div>
+        <label for="name">Full Name</label>
+        <input id="name" name="name" type="text" required placeholder="Enter your name">
+      </div>
+
+      <div>
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" required placeholder="you@example.com">
+      </div>
+
+      <div>
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" required placeholder="Write your message here..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+    <!-- ?? UPDATED FORM ENDS HERE -->
+
+    <p class="small-note">
+      Your message will be delivered to <b>cart2doors@gmail.com</b>
+    </p>
+  </div>
+</body>
+</html>
