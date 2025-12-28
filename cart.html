@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Cart</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 15px;
+}
+.cart {
+  max-width: 500px;
+  margin: auto;
+}
+.item {
+  display: flex;
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+}
+.item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.info {
+  flex: 1;
+  margin-left: 10px;
+}
+.name {
+  font-weight: bold;
+}
+.price {
+  color: green;
+}
+.qty {
+  font-size: 14px;
+}
+.remove {
+  background: red;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.total {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="cart" id="cartList">
+  Loading cart...
+</div>
+
+<div class="cart total" id="totalAmount">
+  Total: ?0
+</div>
+
+<script type="module" src="cart.js"></script>
+</body>
+</html>
